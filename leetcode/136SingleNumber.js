@@ -14,3 +14,6 @@ var singleNumber = function(nums) {
     return Number(ans[0]);
 
 };
+
+num1 = [1,2,3,4]
+singleNumber(num1)
