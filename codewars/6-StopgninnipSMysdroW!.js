@@ -7,16 +7,21 @@ function spinWords(str){
   //TODO Have fun :)
   console.log('str: ', str)
 
-  let arr = str.split('')
-  arr.forEach(word => {
+  let arr = str.split(' ')
+  let ans = arr.map(word => {
+    // console.log('word: ', word);
     if (word.length > 4) {
-      let letters = word.split('')
-      console.log('letters: ', letters);
+      let spinned = word.split('').reverse().join('')
+      return spinned
+    } else {
+      return word
     }
-  })
+  }).join(' ')
+
+  return ans
 }
 
-let string = Hey fellow warriors
+let string = 'Hey fellow warriors'
 //  Hey wollef sroirraw
 
 console.log(spinWords(string))
