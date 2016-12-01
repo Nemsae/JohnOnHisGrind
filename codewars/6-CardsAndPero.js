@@ -23,7 +23,6 @@ function cardsAndPero(s) {
     let card = s[i] + s[i+1] + s[i+2]
     let cardSuit = s[i]
     let cardNum = s[i+1] + s[i+2]
-    console.log('card: ', card, 'cardSuit: ', cardSuit,  'cardNum: ', cardNum );
 
     //  Check if card is duplicate
     if (dups[card]) return dupsAns
@@ -31,7 +30,6 @@ function cardsAndPero(s) {
 
     count[cardSuit].push(cardNum)
   }
-  console.log('count: ', count);
 
   let keys = Object.keys(count)
   let ans = []
