@@ -32,3 +32,6 @@ function reverse (list, previous) {
 
     return list
 }
+
+//  GIVEN INPUT : [1,2]
+//  EXPECTED OUTPUT : [2,1]
