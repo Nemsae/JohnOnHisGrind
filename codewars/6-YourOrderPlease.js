@@ -14,15 +14,23 @@ function order(words){
   words.split(' ').forEach(word => {
     let place
 
-    let editedWord = word.split('').filter(letter => {
+    word.split('').forEach(letter => {
       if (Number(letter)) place = letter
-      else return letter
-    }).join('')
-    console.log('editedWord: ', editedWord);
+    })
 
-    // dict[place] =
+    dict[place] = word
     console.log('place: ', place);
+    console.log('dict: ', dict);
   })
+  let ans = []
+
+  Object.keys(dict).forEach(key => {
+    ans.push(dict[key])
+  })
+  // for (let x in dict) {
+  //   ans.push(x)
+  // }
+  return ans.join(' ')
 
   //Find the place
   //put into dict like 'place':word
