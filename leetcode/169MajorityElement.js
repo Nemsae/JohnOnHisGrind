@@ -31,3 +31,6 @@ var majorityElement = function(nums) {
 
     return Number(ans)
 };
+
+// Percentile: 62.99%
+// Runtime: 108 ms
