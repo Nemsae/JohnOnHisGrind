@@ -13,3 +13,12 @@
 // What are all the possible results?
 // How do they occur, periodically or randomly?
 // You may find this Wikipedia article useful.
+
+
+// /**
+//  * @param {number} num
+//  * @return {number}
+//  */
+// var addDigits = function(num) {
+//     return 1 + ((num-1) % 9)
+// };
