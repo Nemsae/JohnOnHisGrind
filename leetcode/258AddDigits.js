@@ -15,10 +15,17 @@
 // You may find this Wikipedia article useful.
 
 
-// /**
-//  * @param {number} num
-//  * @return {number}
-//  */
-// var addDigits = function(num) {
-//     return 1 + ((num-1) % 9)
-// };
+/**
+ * @param {number} num
+ * @return {number}
+ */
+var addDigits = function(num) {
+    return 1 + ((num-1) % 9)
+};
+
+// TC1:
+num1 = 89
+addDigits(num1)
+
+// Runtime: 145 ms
+// Percentile: 41.10%
