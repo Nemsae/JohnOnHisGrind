@@ -7,3 +7,7 @@ var reverseString = function(s) {
         return arr[s.length- i-1]
     }).join('')
 };
+
+s1 = 'hello'
+
+reverseString(s1)
