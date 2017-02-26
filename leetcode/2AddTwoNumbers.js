@@ -104,3 +104,7 @@ var addTwoNumbers = function(l1, l2) {
     // console.log('OTHER ANSWER: ', ans)
     return ansList2;
 };
+
+//Error with testcase:
+// [9,9]
+// [9]
