@@ -68,7 +68,13 @@ var findMedianSortedArrays = function(nums1, nums2) {
 
     let l = mergedArray.length
 
-  
+    // if (l % 2 === 1) {
+    //     let ans = mergedArray[Math.floor(l/2)]
+    //     return ans
+    // } else {
+    //     let ans = (mergedArray[Math.floor(l/2)-1] + mergedArray[Math.floor(l/2)]) / 2
+    //     return ans
+    // }
 };
 
 // TC#1
