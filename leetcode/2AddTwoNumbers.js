@@ -32,4 +32,27 @@ var addTwoNumbers = function(l1, l2) {
             ansList.next = new ListNode(val3)
             console.log('ALPHA2: ', ansList)
         }
+
+        if (carry) {
+           console.log('there is a carry')
+
+           l1 ? l1.val = l1.val + carry : l2.val = l2.val + carry
+           carry = 0;
+
+           val3 = (l1 && l1.val) + (l2 && l2.val)
+
+           //  Node Creation
+           if (ansList === undefined && count === 1) {
+               console.log('Node Creation1')
+               ansList = new ListNode(val3)
+               ansList2 = ansList
+               console.log('FIRST CREATION: ', ansList)
+           } else if (val3 < 10) {
+               console.log(count, 'omega1: ', ansList)
+
+               ansList.next = new ListNode(val3);
+               ('NODE CREATION3: ', ansList.next)
+               ansList = ansList.next
+           }
+       }
 }
