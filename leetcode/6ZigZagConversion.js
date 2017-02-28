@@ -1,3 +1,5 @@
+//  Pattern for this problem: Check for the indexes of climbing stairs
+
 /**
  * @param {string} s
  * @param {number} numRows
@@ -7,7 +9,7 @@ var convert = function(s, numRows) {
     if (s.length === 0 || numRows === 1) {
         return s
     }
-    
+
     let arr = s.split('')
 
     let n = numRows
