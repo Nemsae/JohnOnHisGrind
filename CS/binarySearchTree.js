@@ -10,7 +10,6 @@ function binarySearchTree(val) {
   this.root = null
 }
 
-// 11
 binarySearchTree.prototype.push = function (val) {
   if (this.root === null) {
     this.root = new Node(val)
@@ -21,6 +20,8 @@ binarySearchTree.prototype.push = function (val) {
 
   let current = this.root
 
+  recurseTree(current, val)
+  
   //  recurse through given node, with val
   function recurseTree(node, val) {
     if (val <= node.value) {
@@ -41,7 +42,6 @@ binarySearchTree.prototype.push = function (val) {
     return current
   }
 
-  recurseTree(current, val)
 };
 
 
