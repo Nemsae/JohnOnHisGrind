@@ -1,7 +1,7 @@
 //  If board is done or not return 'Finished!', otherwise return 'Try again!'
 
 function doneOrNot(board){
-  //  Check if all rows sum to 36
+  //  Check if all rows sum to 45
   let err = 'Try again!'
   let suc = 'Finished!'
 
@@ -9,11 +9,8 @@ function doneOrNot(board){
   for (let i = 0; i < board.length; i++) {
     //  check if each row is correct
     let row = board[i]
-    // console.log('row: ', row);
     let rowSum = row.reduce((c, i, a) => {return c + i}, 0)
-    // console.log('rowSum: ', rowSum);
     if (rowSum !== 45) return err
-    // else console.log('rowSum is 45')
 
     let col = []
     let box = []
@@ -28,42 +25,29 @@ function doneOrNot(board){
       innerBox += boxNum
       if ((j + 1) % 3 === 0) {
         box.push(innerBox)
-        // console.log('innerBox: ', innerBox);
         innerBox = 0
       }
 
-
-      //  check if each column is correct
-
     }
     bigBox.push(box)
-    // console.log('box: ', box);
-    // console.log('col: ', col);
 
     let colSum = col.reduce((c, i) => c+i, 0)
     if (colSum !== 45) return err
-    // else console.log('colSum is 45')
 
   }
 
-  // console.log('bigBox: ', bigBox);
   let sumBox = []
   for (let i = 0; i < bigBox[0].length; i++) {
     let sum = 0
     for (let j = 0; j < bigBox.length; j++) {
       let num = bigBox[j][i]
-      // console.log('num: ', num);
       sum += num
       if ((j + 1) % 3 === 0) {
         sumBox.push(sum)
-        // console.log('sum: ', sum);
         sum = 0
       }
     }
   }
-  // console.log('sumBox: ', sumBox);
-  // console.log(Math.min(...sumBox))
-  // console.log(Math.max(...sumBox))
   if (Math.min(...sumBox) === 45 && Math.max(...sumBox) === 45) return suc
   else return err
 }
