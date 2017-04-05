@@ -76,3 +76,9 @@ var findMedianSortedArrays = function(nums1, nums2) {
         return ans
     }
 };
+
+// TC#1
+nums1 = [1,3]
+nums2 = [2]
+
+findMedianSortedArrays(nums1, nums2)
