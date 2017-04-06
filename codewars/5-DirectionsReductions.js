@@ -15,31 +15,38 @@ let directions3 = ["NORTH", "SOUTH", "EAST", "WEST", "EAST", "WEST"]
 function dirReduc(arr){
   // ...
   let key = {'NORTH':'SOUTH', 'SOUTH':'NORTH', 'WEST':'EAST', 'EAST':'WEST'}
-  let rec = []
   // let prevTmp
+  let count = 2
+  while (count) {
+    let rec = []
 
-  for (let i = 0; i < arr.length; i++) {
-    let currDir = arr[i]
-    let prevDir = arr[i-1]
-    let nextDir = arr[i+1]
+    for (let i = 0; i < arr.length; i++) {
+      let currDir = arr[i]
+      let prevDir = arr[i-1]
+      let nextDir = arr[i+1]
 
-    console.log('currDir: ', currDir);
-    console.log('prevDir: ', prevDir);
-    console.log('nextDir: ', nextDir);
+      console.log('currDir: ', currDir);
+      console.log('prevDir: ', prevDir);
+      console.log('nextDir: ', nextDir);
 
-    if (nextDir === key[currDir]) {
-      console.log('Sanity:NEXT MATCH FOUND');
-    } else if (prevDir === key[currDir]) {
-      console.log('Sanity:PREV MATCH FOUND');
-    } else {
-      rec.push(currDir)
-      console.log('Sanity:MATCH NOT FOUND');
+      if (nextDir === key[currDir]) {
+        console.log('Sanity:NEXT MATCH FOUND');
+      } else if (prevDir === key[currDir]) {
+        console.log('Sanity:PREV MATCH FOUND');
+      } else {
+        rec.push(currDir)
+        console.log('Sanity:MATCH NOT FOUND');
+      }
     }
-  }
 
-  return rec
+    arr = rec
+    count--
+
+    if (!count) return rec
+  }
+  // return rec
 }
 
-// console.log(dirReduc(directions))
-console.log(dirReduc(directions2))
+console.log(dirReduc(directions))
+// console.log(dirReduc(directions2))
 // console.log(dirReduc(directions3))
