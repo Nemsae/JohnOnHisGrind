@@ -34,7 +34,7 @@ function nextBigger(n){
     // if (flag) return
   }
 
-  return flag ? +s.join('') : -1
+// git
   //
   // return +s.join('')
 }
