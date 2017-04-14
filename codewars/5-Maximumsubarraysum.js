@@ -9,7 +9,8 @@
 var maxSequence = function(arr){
   if (!arr.length) return 0
 
-  let maxCur = maxGlo = arr[0]
+  let maxCur = arr[0]
+  let maxGlo = arr[0]
 
   for (let i = 1; i < arr.length; i++) {
     maxCur = Math.max(arr[i], maxCur + arr[i])
