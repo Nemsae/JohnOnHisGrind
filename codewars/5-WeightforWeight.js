@@ -7,11 +7,15 @@
 // All numbers in the list are positive numbers and the list can be empty.
 
 function orderWeight(str) {
+    console.log('str: ', str);
     // your code
     let dict = {}
     let weights = {}
-    str.split(' ').map((num) => {
+    let arr = str.split(' ')
+    for (let i = arr.length - 1; i >= 0; i--) {
+    // str.split(' ').map((num) => {
       //  instead of split (while loop and access string by index)
+      let num = arr[i]
       let x = num.length - 1
       let s = 0
       let wFlag = false
@@ -24,20 +28,20 @@ function orderWeight(str) {
       console.log('num: ', num);
 
       //  I need to be able to know if a 'weight' is already present,
-      if (weights[s] === 0) {
+      if (weights[s]) {
         console.log('WEIGHT EXISTS!');
         weights[s]++
         wFlag = true
       } else {
-        weights[s] = 0
+        weights[s] = 1
       }
 
       if (dict[num]) {
         // console.log('KEY EXISTS:', dict);
         if (wFlag) {
           console.log('Since weight exits, record with modified weight')
+          // dict[+num + .1] = s + weights[s]/10
           dict[+num + .1] = s + weights[s]/10
-          dict[num] = s + weights[s]/10
         } else {
           dict[+num + .1] = s
         }
@@ -53,7 +57,7 @@ function orderWeight(str) {
       console.log('s: ', s);
 
       // console.log('num: ', typeof num);
-    })
+    }
 
     let keys = Object.keys(dict)
 
@@ -83,15 +87,24 @@ function orderWeight(str) {
       return  dict[a] - dict[b]
     }).join(' ')
 
-    console.log('keys: ', keys);
-
-    console.log('dict: ', dict);
+    // console.log('keys: ', keys);
+    //
+    // console.log('dict: ', dict);
 }
 let str1 = "103 123 4444 99 2000"
 let str2  = "2000 10003 1234000 44444444 9999 11 11 22 123"
+let str3 = '71899703 200 6 91 425 4 67407 7 96488 6 4 2 7 31064 9 7920 1 34608557 27 72 18 81'
 // console.log(orderWeight(str1))
-console.log(orderWeight(str2))
-console.log("11 11 2000 10003 22 123 1234000 44444444 9999")
+// console.log(orderWeight(str2))
+// console.log('String: ', str2);
+console.log("Answer: 11 11 2000 10003 22 123 1234000 44444444 9999")
+console.log(orderWeight(str3))
+console.log('String: ', str3);
+console.log("Answer: 1 2 200 4 4 6 6 7 7 18 27 72 81 9 91 425 31064 7920 67407 96488 34608557 71899703")
+
+// 71899703 200 6 91 425 4 67407 7 96488 6 4 2 7 31064 9 7920 1 34608557 27 72 18 81
+// Expected: '1 2 200 4 4 6 6 7 7 18 27 72 81 9 91 425 31064 7920 67407 96488 34608557 71899703',
+// instead got: '1 2 200 4 4.1 6 6.1 7 7.1 81 9 72 27 18 91 425 31064 7920 67407 96488 34608557 71899703'
 
 
 // Test.it("Basic tests",function() {
