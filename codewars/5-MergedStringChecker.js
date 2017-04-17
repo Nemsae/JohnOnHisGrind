@@ -33,9 +33,12 @@ function isMerge(s, p1, p2) {
     let nextCode = s[k+1]
     let ans = ''
 
-    console.log('code: ', code);
-    console.log('char1: ', char1);
-    console.log('char2: ', char2);
+    let flag1 = false
+    let flag2 = false
+
+    console.log(k, 'code: ', code);
+    console.log(k, 'char1: ', char1);
+    console.log(k, 'char2: ', char2);
 
     //  If Neither of the next letters do not match the next code, return false
     // if (next1 !== nextCode && next2 !== nextCode) {
@@ -44,26 +47,46 @@ function isMerge(s, p1, p2) {
     // }
 
     if (char1 === code) {
-      console.log('char1 Matches')
+      console.log(k, 'char1 Matches', k)
 
-      i++
+      flag1 = true
       ans += char1
     } else if (char2 === code)  {
-      console.log('char2 Matches', k)
+      console.log(k, 'char2 Matches', k)
 
-      j++
+      flag2 = true
       ans += char2
     }
+
 
     if (char1 !== code && char2 !== code) {
       return false
     }
-    if (ans === s) return true
-    // if (k + 1 === s.length) {
-    //   if (next1 !== undefined || next2 !== undefined) return false
-    //   return true
-    //
-    // }
+
+    // if (ans === s) return true
+    console.log(k, 'i: ', i, 'j: ', j);
+    flag1 ? i++ : j++
+    console.log(k, 'i: ', i, 'j: ', j);
+
+    if (k + 1 === s.length) {
+      let p1End = p1[i]
+      let p2End = p2[j]
+      let next1End = p1[i+1]
+      let next2End = p1[j+1]
+      console.log('END p1End: ', p1End);
+      console.log('END p2End: ', p2End);
+      console.log('END next1End: ', next1End);
+      console.log('END next2End: ', next2End);
+
+      if (next1End || next2End) {
+        console.log('next1 or next2 still exists')
+        return false
+      }
+      return true
+
+    }
+
+
   }
 
 
@@ -72,6 +95,11 @@ function isMerge(s, p1, p2) {
 
 // console.log('My Answer: ', isMerge('codewars', 'code', 'wars'))
 console.log('My Answer: ', isMerge('codewars', 'cdw', 'oears'))
+console.log('My Answer: ', isMerge('codewars', 'codes', 'wars'))
+
+// codewars
+// p1:  codes
+// p2:  wars
 
 // Test.expect(isMerge('codewars', 'code', 'wars'));
 // Test.expect(isMerge('codewars', 'cdw', 'oears'));
