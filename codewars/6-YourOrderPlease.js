@@ -27,7 +27,8 @@ function order(words){
   Object.keys(dict).forEach(key => {
     ans.push(dict[key])
   })
-  // for (let x in dict) {
+  
+  // for (let x of dict) {
   //   ans.push(x)
   // }
   return ans.join(' ')
