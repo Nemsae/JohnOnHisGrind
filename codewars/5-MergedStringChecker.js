@@ -45,17 +45,30 @@ function isMerge(s, p1, p2) {
     //   console.log('Next Letters do not match nextCode')
     //   return false
     // }
-
-    if (char1 === code) {
-      console.log(k, 'char1 Matches', k)
-
-      flag1 = true
-      ans += char1
-    } else if (char2 === code)  {
+    if (char2 === code) {
       console.log(k, 'char2 Matches', k)
+      if (next2 !== nextCode && code === char1) {
+        console.log(k, 'but we switch to char1', k)
+        flag1 = true
 
-      flag2 = true
-      ans += char2
+        ans += char1
+      } else {
+        console.log(k, 'char2 Matched', k)
+        flag2 = true
+        ans += char2
+      }
+    } else if (char1 === code) {
+      console.log(k, 'char1 Matches', k)
+      if (next1 !== nextCode && code === char2) {
+        console.log(k, 'but we switch to char2', k)
+        flag2 = true
+
+        ans += char2
+      } else {
+        console.log(k, 'char1 Matched', k)
+        flag1 = true
+        ans += char1
+      }
     }
 
 
@@ -72,13 +85,13 @@ function isMerge(s, p1, p2) {
       let p1End = p1[i]
       let p2End = p2[j]
       let next1End = p1[i+1]
-      let next2End = p1[j+1]
+      let next2End = p2[j+1]
       console.log('END p1End: ', p1End);
       console.log('END p2End: ', p2End);
       console.log('END next1End: ', next1End);
       console.log('END next2End: ', next2End);
 
-      if (next1End || next2End) {
+      if (next1End || next2End || p1End || p2End) {
         console.log('next1 or next2 still exists')
         return false
       }
@@ -94,8 +107,13 @@ function isMerge(s, p1, p2) {
 }
 
 // console.log('My Answer: ', isMerge('codewars', 'code', 'wars'))
-console.log('My Answer: ', isMerge('codewars', 'cdw', 'oears'))
-console.log('My Answer: ', isMerge('codewars', 'codes', 'wars'))
+// console.log('My Answer: ', isMerge('codewars', 'cdw', 'oears'))
+// console.log('My Answer: ', isMerge('codewars', 'codes', 'wars'))
+console.log('My Answer: ', isMerge('Bananas from Bahamas', 'Bahas', 'Bananas from am'))
+
+// s:  Bananas from Bahamas
+// p1:  Bahas
+// p2:  Bananas from am
 
 // codewars
 // p1:  codes
