@@ -19,6 +19,11 @@ function orderWeight(str) {
         x--
       }
       console.log('num: ', num);
+      if (dict[num]) {
+        console.log('Sanity:', dict);
+        dict[+num + .1] = s
+        console.log('Sanity:1', dict);
+      }
       dict[num] = s
       console.log('dict: ', dict);
       console.log('s: ', s);
@@ -28,14 +33,33 @@ function orderWeight(str) {
 
     let keys = Object.keys(dict)
 
-    for (let x of dict) {
-      console.log('x: ', x);
-    }
+    return keys.sort((a, b) => {
+      let x = a.split('.')
+      let y = b.split('.')
+      console.log('a: ', a, 'b: ', b);
+      if (x.length > 1) {
+        console.log('a duplicate: ', a);
+      }
+      if (y.length > 1) {
+        console.log('b duplicate: ', b, 'vs ', a);
+        console.log('y[0]: ', y[0]);
+        console.log('x[0]: ', x[0]);
+        if (y[0] === x[0]) {
+          console.log('Sanity:0000000');
+        }
+      }
+      return  dict[a] - dict[b]
+    }).join(' ')
+
+    console.log('keys: ', keys);
 
     console.log('dict: ', dict);
 }
 let str1 = "103 123 4444 99 2000"
-console.log(orderWeight(str1))
+let str2  = "2000 10003 1234000 44444444 9999 11 11 22 123"
+// console.log(orderWeight(str1))
+console.log(orderWeight(str2))
+console.log("11 11 2000 10003 22 123 1234000 44444444 9999")
 
 
 // Test.it("Basic tests",function() {
