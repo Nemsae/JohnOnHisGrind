@@ -6,10 +6,37 @@
 //
 // All numbers in the list are positive numbers and the list can be empty.
 
-function orderWeight(strng) {
+function orderWeight(str) {
     // your code
-    string.split(' ').map(num ->
+    let dict = {}
+    str.split(' ').map((num) => {
+      //  instead of split (while loop and access string by index)
+      let x = num.length - 1
+      let s = 0
+      while (x > -1) {
+        console.log('num[x]: ', num[x]);
+        s += +num[x]
+        x--
+      }
+      console.log('num: ', num);
+      dict[num] = s
+      console.log('dict: ', dict);
+      console.log('s: ', s);
+
+      // console.log('num: ', typeof num);
+    })
+
+    let keys = Object.keys(dict)
+
+    for (let x of dict) {
+      console.log('x: ', x);
+    }
+
+    console.log('dict: ', dict);
 }
+let str1 = "103 123 4444 99 2000"
+console.log(orderWeight(str1))
+
 
 // Test.it("Basic tests",function() {
 //     Test.assertEquals(orderWeight("103 123 4444 99 2000"), "2000 103 123 4444 99")
