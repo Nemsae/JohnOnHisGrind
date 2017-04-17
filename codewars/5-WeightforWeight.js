@@ -9,22 +9,46 @@
 function orderWeight(str) {
     // your code
     let dict = {}
+    let weights = {}
     str.split(' ').map((num) => {
       //  instead of split (while loop and access string by index)
       let x = num.length - 1
       let s = 0
+      let wFlag = false
+
       while (x > -1) {
         console.log('num[x]: ', num[x]);
         s += +num[x]
         x--
       }
       console.log('num: ', num);
-      if (dict[num]) {
-        console.log('Sanity:', dict);
-        dict[+num + .1] = s
-        console.log('Sanity:1', dict);
+
+      //  I need to be able to know if a 'weight' is already present,
+      if (weights[s] === 0) {
+        console.log('WEIGHT EXISTS!');
+        weights[s]++
+        wFlag = true
+      } else {
+        weights[s] = 0
       }
-      dict[num] = s
+
+      if (dict[num]) {
+        // console.log('KEY EXISTS:', dict);
+        if (wFlag) {
+          console.log('Since weight exits, record with modified weight')
+          dict[+num + .1] = s + weights[s]/10
+          dict[num] = s + weights[s]/10
+        } else {
+          dict[+num + .1] = s
+        }
+        console.log('Sanity:1', dict);
+      } else {
+        if (wFlag) {
+          dict[num] = s + weights[s]/10
+        } else {
+          dict[num] = s
+        }
+      }
       console.log('dict: ', dict);
       console.log('s: ', s);
 
@@ -34,20 +58,28 @@ function orderWeight(str) {
     let keys = Object.keys(dict)
 
     return keys.sort((a, b) => {
-      let x = a.split('.')
-      let y = b.split('.')
-      console.log('a: ', a, 'b: ', b);
-      if (x.length > 1) {
-        console.log('a duplicate: ', a);
-      }
-      if (y.length > 1) {
-        console.log('b duplicate: ', b, 'vs ', a);
-        console.log('y[0]: ', y[0]);
-        console.log('x[0]: ', x[0]);
-        if (y[0] === x[0]) {
-          console.log('Sanity:0000000');
-        }
-      }
+      // if (dict[a] === dict[b]) {
+      //   console.log('Same!')
+      //   let x = a.split('.')
+      //   let y = b.split('.')
+      //   if ()
+      // }
+
+
+      // let x = a.split('.')
+      // let y = b.split('.')
+      // console.log('a: ', a, 'b: ', b);
+      // if (x.length > 1) {
+      //   console.log('a duplicate: ', a);
+      // }
+      // if (y.length > 1) {
+      //   console.log('b duplicate: ', b, 'vs ', a);
+      //   console.log('y[0]: ', y[0]);
+      //   console.log('x[0]: ', x[0]);
+      //   if (y[0] === x[0]) {
+      //     console.log('Sanity:0000000');
+      //   }
+      // }
       return  dict[a] - dict[b]
     }).join(' ')
 
