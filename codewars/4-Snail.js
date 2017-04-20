@@ -40,7 +40,8 @@ snail = function(array) {
   if (array.length === 1) return array[0]
   if (!(r-1)) return []
 
-  for (let i = 0, j = 0, k = 0; k < max; k++) {
+  // for (let i = 0, j = 0, k = 0, char = array[i][j]; k < max; k++) {
+  for (let i = 0, j = 0, k = 0, ; k < max; k++) {
     let char = array[i][j]
 
     if (directions === 'right') {
@@ -48,6 +49,7 @@ snail = function(array) {
 
       if (w + 1 === c) directions = 'down', i++, r--, w = 0
       else
+
         j++, w++
     } else if (directions === 'down') {
       ans.push(char)
@@ -84,14 +86,15 @@ let arr2 = [ [ 1, 2, 3, 4, 5, 6, 7 ],
   [ 36, 37, 38, 39, 40, 41, 42 ],
   [ 43, 44, 45, 46, 47, 48, 49 ] ]
 
-describe('Solution', function(){
-  it('My own test', function(){
-    Test.assertSimilar(snail(arr1), [1,2,3,6,9,8,7,4,5], 'Que?')
-  })
-  it('My own test', function(){
-    Test.assertSimilar(snail([[1]]), [1], 'Que?')
-  })
-  it('My own test', function(){
-    Test.assertSimilar(snail(arr2), [1, 2, 3, 4, 5, 6, 7, 14, 21, 28, 35, 42, 49, 48, 47, 46, 45, 44, 43, 36, 29, 22, 15, 8, 9, 10, 11, 12, 13, 20, 27, 34, 41, 40, 39, 38, 37, 30, 23, 16, 17, 18, 19, 26, 33, 32, 31, 24, 25], 'Que?')
-  })
-})
+console.log(snail(arr2))
+// describe('Solution', function(){
+//   it('My own test', function(){
+//     Test.assertSimilar(snail(arr1), [1,2,3,6,9,8,7,4,5], 'Que?')
+//   })
+//   it('My own test', function(){
+//     Test.assertSimilar(snail([[1]]), [1], 'Que?')
+//   })
+//   it('My own test', function(){
+//     Test.assertSimilar(snail(arr2), [1, 2, 3, 4, 5, 6, 7, 14, 21, 28, 35, 42, 49, 48, 47, 46, 45, 44, 43, 36, 29, 22, 15, 8, 9, 10, 11, 12, 13, 20, 27, 34, 41, 40, 39, 38, 37, 30, 23, 16, 17, 18, 19, 26, 33, 32, 31, 24, 25], 'Que?')
+//   })
+// })
