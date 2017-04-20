@@ -20,11 +20,10 @@
 // Focus attention on efficiency
 
 function dblLinear(n) {
-    let ans
     let tmp = n
     let dict = {}
 
-    if (n === 0) ans = 1
+    if (n === 0) return 1
 
     let seq = [1, 3, 4]
     let index = 1
@@ -50,24 +49,27 @@ function dblLinear(n) {
         z = 3 * x + 1
 
         console.log('x in loop: ', x)
+        if (x === undefined) console.log('index: ', index)
         // console.log('y in loop: ', y)
         // console.log('z in loop: ', z)
+        else {
+          if (!dict[y]) set.push(y), dict[y] = 1
+          else console.log('DUPLICATE: ', y)
+          if (!dict[z]) set.push(z), dict[z] = 1
+          else console.log('DUPLICATE: ', z)
 
-        if (!dict[y]) set.push(y), dict[y] = 1
-        if (!dict[z]) set.push(z), dict[z] = 1
+          // console.log('seq PRESORT: ', seq);
+          // seq.sort((a, b) => a-b)
+          // console.log('seq AFTERSORT: ', seq);
 
-        // console.log('seq PRESORT: ', seq);
-        // seq.sort((a, b) => a-b)
-        // console.log('seq AFTERSORT: ', seq);
-
-        index++ //  Increment index until max for all new values of previous set
+          index++ //  Increment index until max for all new values of previous set
+        }
       }
 
-      console.log('set AFTER: ', set);
+      console.log('set: ', set);
 
-      // console.log('set PRESORT: ', set);
-      seq = seq.concat(set.sort((a, b) => a-b))
-      console.log('seq AFTSORT: ', seq);
+      seq = seq.concat(set).sort((a, b) => a-b)
+      console.log('seq SORT: ', seq);
 
       if (seq[tmp]) return seq[tmp]
 
@@ -75,7 +77,9 @@ function dblLinear(n) {
       n--
     }
 
- return ans
+    console.log('seq[tmp]: ', seq[tmp]);
+
+    return seq[tmp]
 }
 
 let n = 4 // ??
@@ -88,8 +92,8 @@ let n5 = 100  //  447
 
 // console.log(dblLinear(n0))
 // console.log(dblLinear(n))
-console.log(dblLinear(n1))
-// dblLinear(n2)
-// dblLinear(n3)
-// dblLinear(n4)
-// dblLinear(n5)
+// console.log(dblLinear(n1))
+// console.log(dblLinear(n2))
+// console.log(dblLinear(n3))
+// console.log(dblLinear(n4))
+// console.log(dblLinear(n5))
