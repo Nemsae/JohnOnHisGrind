@@ -20,60 +20,75 @@
 // Focus attention on efficiency
 
 function dblLinear(n) {
-//     console.log('n: ', n)
-//     let memo = {'1y': 3, '1z': 4}
     let ans
+    let tmp = n
+    let dict = {}
 
     if (n === 0) ans = 1
 
     let seq = [1, 3, 4]
     let index = 1
-    let max = Math.pow(2, 1)
+
+    let maxCount = 1
 
     while (n) {
-      let x = seq[index]
+      // let x = seq[index]
 
-      console.log('x: ', x)
+      // console.log('x: ', x)
 
       let y, z
       let set = []
+      console.log('set BEFORE: ', set);
+
+      //  FOR ALL NEW VALUES (determined by 'max')
+      let max = Math.pow(2, maxCount)
 
       for (let i = 0; i < max; i++) {
-        // let x = seq[index]
-
+        console.log('max: ', max)
+        let x = seq[index]
         y = 2 * x + 1
         z = 3 * x + 1
 
         console.log('x in loop: ', x)
+        // console.log('y in loop: ', y)
+        // console.log('z in loop: ', z)
 
         if (!dict[y]) set.push(y), dict[y] = 1
         if (!dict[z]) set.push(z), dict[z] = 1
 
-        index++
+        // console.log('seq PRESORT: ', seq);
+        // seq.sort((a, b) => a-b)
+        // console.log('seq AFTERSORT: ', seq);
+
+        index++ //  Increment index until max for all new values of previous set
       }
 
-      // if (memo[`${x}y`]) y = memo[`${x}y`]
-      // else y = 2 * x + 1, memo[`${x}y`] = y
+      console.log('set AFTER: ', set);
 
-      // if (memo[`${x}z`]) y = memo[`${x}z`]
-      // else z = 3 * x + 1, memo[`${x}z`] = z
+      // console.log('set PRESORT: ', set);
+      seq = seq.concat(set.sort((a, b) => a-b))
+      console.log('seq AFTSORT: ', seq);
 
-      // console.log('memo: ', memo)
+      if (seq[tmp]) return seq[tmp]
 
-      index++
+      maxCount++
       n--
     }
 
  return ans
 }
 
+let n = 4 // ??
+let n0 = 0   //  1
 let n1 = 10   //  22
 let n2 = 20   //  57
 let n3 = 30   //  91
 let n4 = 50   //  175
 let n5 = 100  //  447
 
-dblLinear(n1)
+// console.log(dblLinear(n0))
+// console.log(dblLinear(n))
+console.log(dblLinear(n1))
 // dblLinear(n2)
 // dblLinear(n3)
 // dblLinear(n4)
