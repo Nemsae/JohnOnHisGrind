@@ -20,7 +20,6 @@
 // Focus attention on efficiency
 
 function dblLinear(n) {
-    // your code`
 //     console.log('n: ', n)
 //     let memo = {'1y': 3, '1z': 4}
     let ans
@@ -28,25 +27,43 @@ function dblLinear(n) {
     if (n === 0) ans = 1
 
     let seq = [1, 3, 4]
-    let count = 1
+    let index = 1
+    let max = Math.pow(2, 1)
 
     while (n) {
-      let x = seq[count]
+      let x = seq[index]
 
       console.log('x: ', x)
 
       let y, z
-      if (memo[`${x}y`]) y = memo[`${x}y`]
-      else y = 2 * x + 1, memo[`${x}y`] = y
+      let set = []
 
-      if (memo[`${x}z`]) y = memo[`${x}z`]
-      else z = 3 * x + 1, memo[`${x}z`] = z
+      for (let i = 0; i < max; i++) {
+        // let x = seq[index]
 
-      console.log('memo: ', memo)
+        y = 2 * x + 1
+        z = 3 * x + 1
 
-      count++
+        console.log('x in loop: ', x)
+
+        if (!dict[y]) set.push(y), dict[y] = 1
+        if (!dict[z]) set.push(z), dict[z] = 1
+
+        index++
+      }
+
+      // if (memo[`${x}y`]) y = memo[`${x}y`]
+      // else y = 2 * x + 1, memo[`${x}y`] = y
+
+      // if (memo[`${x}z`]) y = memo[`${x}z`]
+      // else z = 3 * x + 1, memo[`${x}z`] = z
+
+      // console.log('memo: ', memo)
+
+      index++
       n--
     }
+
  return ans
 }
 
