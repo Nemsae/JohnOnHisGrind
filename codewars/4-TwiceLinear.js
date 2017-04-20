@@ -20,66 +20,71 @@
 // Focus attention on efficiency
 
 function dblLinear(n) {
-    let tmp = n
-    let dict = {}
+  let tmp = n
+  let dict = {}
+  let dups = 0
 
-    if (n === 0) return 1
+  if (n === 0) return 1
 
-    let seq = [1, 3, 4]
-    let index = 1
+  let seq = [1]
+  let index = 0
 
-    let maxCount = 1
+  let maxCount = 0
 
-    while (n) {
-      // let x = seq[index]
+  while (n) {
+    // let x = seq[index]
 
-      // console.log('x: ', x)
+    // console.log('x: ', x)
 
-      let y, z
-      let set = []
-      console.log('set BEFORE: ', set);
+    let y, z
+    let set = []
+    console.log('set BEFORE: ', set);
 
-      //  FOR ALL NEW VALUES (determined by 'max')
-      let max = Math.pow(2, maxCount)
+    //  FOR ALL NEW VALUES (determined by 'max')
+    let max = Math.pow(2, maxCount)
+    console.log('max: ', max)
 
-      for (let i = 0; i < max; i++) {
-        console.log('max: ', max)
-        let x = seq[index]
-        y = 2 * x + 1
-        z = 3 * x + 1
+    for (let i = 0; i < max; i++) {
+      let x = seq[index]
+      let yDup = false
+      let zDup = false
+      y = 2 * x + 1
+      z = 3 * x + 1
 
-        console.log('x in loop: ', x)
-        if (x === undefined) console.log('index: ', index)
-        // console.log('y in loop: ', y)
-        // console.log('z in loop: ', z)
-        else {
-          if (!dict[y]) set.push(y), dict[y] = 1
-          else console.log('DUPLICATE: ', y)
-          if (!dict[z]) set.push(z), dict[z] = 1
-          else console.log('DUPLICATE: ', z)
+      console.log('x in loop: ', x)
+      if (x === undefined) console.log('index: ', index)
+      // console.log('y in loop: ', y)
+      // console.log('z in loop: ', z)
+      else {
+        if (!dict[y]) set.push(y), dict[y] = 1
+        else yDup = true, console.log('DUPLICATE: ', y), dups++
+        if (!dict[z]) set.push(z), dict[z] = 1
+        else zDup = true, console.log('DUPLICATE: ', z), dups++
 
-          // console.log('seq PRESORT: ', seq);
-          // seq.sort((a, b) => a-b)
-          // console.log('seq AFTERSORT: ', seq);
-
-          index++ //  Increment index until max for all new values of previous set
-        }
+        // if (zDup && yDup) max++, console.log('DOUBLE DUPLICATE')
+        index++  //  Increment index until max for all new values of previous set
       }
 
-      console.log('set: ', set);
-
-      seq = seq.concat(set).sort((a, b) => a-b)
-      console.log('seq SORT: ', seq);
-
-      if (seq[tmp]) return seq[tmp]
-
-      maxCount++
-      n--
     }
 
-    console.log('seq[tmp]: ', seq[tmp]);
 
-    return seq[tmp]
+    console.log('set: ', set);
+
+    seq = seq.concat(set).sort((a, b) => a-b)
+    console.log('seq SORT: ', seq, 'seq.length: ', seq.length);
+
+    if (seq[tmp]) {
+      console.log('dups: ', dups);
+      return seq[tmp-dups]
+    }
+
+    maxCount++
+    n--
+  }
+
+  console.log('seq[tmp]: ', seq[tmp]);
+
+  return seq[tmp]
 }
 
 let n = 4 // ??
@@ -96,4 +101,4 @@ let n5 = 100  //  447
 // console.log(dblLinear(n2))
 // console.log(dblLinear(n3))
 // console.log(dblLinear(n4))
-// console.log(dblLinear(n5))
+console.log(dblLinear(n5))
