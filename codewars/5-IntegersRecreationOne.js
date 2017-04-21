@@ -13,7 +13,49 @@
 
 function listSquared(m, n) {
     // your code
+    let ans = [] // push the array sets into ans
+    let max = 42
+    // let max = n - m
+    // console.log('max # loops: ', max)
+
+    while (max) {
+      let divisors = [m]
+      let half = Math.floor(m/2)
+
+      for (let i = 1; i <= half; i++) {
+        if (m % i === 0) {
+          divisors.push(i)
+        }
+      }
+
+      //  find all divisors of m
+      // console.log('divisors: ', divisors);
+
+      //  square all divisors
+      //  add all divisors
+      let x = divisors.reduce((c, i , a) => {
+        return c + i*i
+      }, 0)
+
+      // console.log('x: ', x);
+
+      //  check if sum is a square itself
+      if (Number.isInteger(Math.sqrt(x))) ans.push([m, x])
+
+      m++
+      max--
+    }
+
+    return ans
 }
+
+let m1 = 1, n1 = 250
+let m2 = 42, n2 = 250
+let m3 = 250, n3 = 500
+
+console.log(listSquared(m1, n1))
+console.log(listSquared(m2, n2))
+console.log(listSquared(m3, n3))
 
 
 // Test.describe("Basic tests",function() {
