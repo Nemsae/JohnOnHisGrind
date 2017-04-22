@@ -12,7 +12,7 @@
 
 
 function listSquared(m, n) {
-    let ans = [] // push the array sets into ans
+    let ans = []
     let max = n - m
 
     while (max) {
@@ -48,7 +48,6 @@ let m3 = 250, n3 = 500
 console.log(listSquared(m1, n1))
 console.log(listSquared(m2, n2))
 console.log(listSquared(m3, n3))
-
 
 // Test.describe("Basic tests",function() {
 //   Test.assertSimilar(listSquared(1, 250), [[1, 1], [42, 2500], [246, 84100]])
