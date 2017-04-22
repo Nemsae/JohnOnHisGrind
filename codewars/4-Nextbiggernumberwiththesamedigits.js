@@ -25,22 +25,21 @@ function nextBigger(n){
     let tmp = num
     let tmp2 = prev
 
+    if (num > prev) console.log('num : ', num, 'prev: ', prev), s[i] = prev, s[i-1] = num, flag = true
+    if (flag) return +s.join('')
     // console.log('num: ', num);
-    if (num > prev) ans.push(num, prev) , i--
-    else ans.unshift(num)
-    console.log('ans: ', ans);
+    // if (num > prev) ans.push(num, prev) , i--
+    // else ans.unshift(num)
+    // console.log('ans: ', ans);
     // if (flag) return
   }
 
-  return ans.join('')
-
-  // console.log('s1: ', s);
-
+  return +s.join('')
 }
 
 // console.log(nextBigger(12)) //  21
 // console.log(nextBigger(513)) // 531
-// console.log(nextBigger(2017)) //  2071
+console.log(nextBigger(2017)) //  2071
 console.log(nextBigger(414)) // 441
 console.log(nextBigger(144)) // 414
 
