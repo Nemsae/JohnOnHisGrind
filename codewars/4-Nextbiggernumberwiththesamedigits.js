@@ -34,7 +34,9 @@ function nextBigger(n){
     // if (flag) return
   }
 
-  return +s.join('')
+  return flag ? +s.join('') : -1
+  //
+  // return +s.join('')
 }
 
 // console.log(nextBigger(12)) //  21
