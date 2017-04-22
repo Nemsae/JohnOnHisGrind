@@ -12,8 +12,23 @@
 function nextBigger(n){
   //your code here
 
+  let s = n.toString().split('')
+
+  console.log('s: ', s);
+
+  for (let i = s.length - 1; i >= 0; i--) {
+    let num = +s[i]
+
+    console.log('num: ', num);
+  }
 
 }
+
+console.log(nextBigger(12)) //  21
+console.log(nextBigger(513)) // 531
+console.log(nextBigger(2017)) //  2071
+console.log(nextBigger(414)) // 441
+console.log(nextBigger(144)) // 414
 
 // Test.assertEquals(nextBigger(12),21)
 // Test.assertEquals(nextBigger(513),531)
