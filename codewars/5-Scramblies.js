@@ -12,7 +12,6 @@ function scramble(str1, str2) {
   let dict = {}
 
   str2.split('').forEach(l => dict[l] ? dict[l]++ : dict[l] = 1)
-
   str1.split('').forEach(l => dict[l] ? dict[l]-- : 1)
 
   let keys = Object.keys(dict)
