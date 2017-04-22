@@ -11,18 +11,17 @@
 function scramble(str1, str2) {
   let dict = {}
 
-  str2.split('').forEach(l => dict[l] ? dict[l]++ ? dict[l] === 1)
+  str2.split('').forEach(l => dict[l] ? dict[l]++ : dict[l] = 1)
 
-  console.log('dict: ', dict);
+  console.log('dict0: ', dict);
 
-  str1.split('').forEach(l => dict[l] ? dict[l]-- ? return false)
+  str1.split('').forEach(l => dict[l] ? dict[l]-- : 1)
+  console.log('dict1: ', dict);
 
-  let sum = 0
+  let keys = Object.keys(dict)
 
-  for (let key of dict) {
-    sum += dict[key]
-  }
-
+  let sum = keys.reduce((c, i, a) => {return c + dict[i]}, 0)
+  console.log('sum: ', sum);
   return sum === 0 ? true : false
 
   // iterate over values of dict and if it's sum === 0, return
