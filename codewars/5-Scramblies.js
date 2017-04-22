@@ -13,18 +13,12 @@ function scramble(str1, str2) {
 
   str2.split('').forEach(l => dict[l] ? dict[l]++ : dict[l] = 1)
 
-  console.log('dict0: ', dict);
-
   str1.split('').forEach(l => dict[l] ? dict[l]-- : 1)
-  console.log('dict1: ', dict);
 
   let keys = Object.keys(dict)
+  let sum = keys.reduce((c, i, a) => c + dict[i], 0)
 
-  let sum = keys.reduce((c, i, a) => {return c + dict[i]}, 0)
-  console.log('sum: ', sum);
   return sum === 0 ? true : false
-
-  // iterate over values of dict and if it's sum === 0, return
 }
 
 console.log(scramble('rkqodlw','world'))
