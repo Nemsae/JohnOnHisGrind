@@ -12,15 +12,15 @@ class minHeap {
   //  returns boolean if right child exists
   hasRightChild(index) {
     //  check if ele exists at index
-    return items[getRightChildIndex(index)] !== undefined ? true : false
+    return this.items[this.getRightChildIndex(index)] !== undefined ? true : false
   }
   //  returns boolean if left child exists
   hasLeftChild(index) {
-    return items[getLeftChildIndex(index)] !== undefined ? true : false
+    return this.items[this.getLeftChildIndex(index)] !== undefined ? true : false
   }
   //  returns boolean if parent element exists
   hasParent(index) {
-    return items[getParentIndex(index)] !== undefined ? true : false
+    return this.items[this.getParentIndex(index)] !== undefined ? true : false
   }
 
   //  returns index of rightChild
@@ -46,70 +46,87 @@ class minHeap {
   //  add an element
   add(value) {
     if (this.size === 0) {
-      items[0] = value
+      this.items[0] = value
       this.size++
+    } else {
+
+      this.items[this.size] = value
+      this.size++
+
+      console.log('this.items: ', this.items);
+
+      // Element is added, now bubble up
+      this.heapifyUp()
     }
 
-    items[size] = value
-    this.size++
-
-    // Element is added, now bubble up
-    heapifyUp()
   }
 
   //  remove the min element/root
   remove() {
     if (this.size === 0) return 'No min element, heap is empty!'
-    let min = items[0]
-    let last = items[size - 1]
+    let min = this.items[0]
+    let last = this.items[this.size - 1]
 
-    items[0] = last
+    this.items[0] = last
     this.size--
 
-    heapifyDown()
+    this.heapifyDown()
 
     return min
   }
 
   //  swaps elements at given indices
   swap(index1, index2) {
-    let tempItem = items[index1]
-    items[index1] = items[index2]
-    items[index2] = tempItem
+    let tempItem = this.items[index1]
+    this.items[index1] = this.items[index2]
+    this.items[index2] = tempItem
   }
 
   //  No need for ind as an argument since we will always heapifyUp from last element added
   heapifyUp() {
-    let ind = size - 1
-    let parentInd = getParentIndex(ind)
-    let parentEle = items[parentInd]
+    let ind = this.size - 1
+    let parentInd = this.getParentIndex(ind)
+    let parentEle = this.items[parentInd]
 
-    while(hasParent(ind) && parentEle > items[ind]) {
-      swap(parentInd, items[ind])
+    while(this.hasParent(ind) && parentEle > this.items[ind]) {
+      this.swap(parentInd, this.items[ind])
       ind = parentInd
     }
   }
 
   heapifyDown() {
     let ind = 0
-    let ele = items[ind]
+    let ele = this.items[ind]
     let swapInd
 
     while(hasLeftChild(ind)) {
-      let smallerChild = items[getLeftChildIndex[ind]]
-      swapInd = getLeftChildIndex[ind]
+      let smallerChild = this.items[this.getLeftChildIndex[ind]]
+      swapInd = this.getLeftChildIndex[ind]
 
-      if (smallerChild > items[getRightChildIndex[ind]]) {
-        smallerChild = items[getRightChildIndex[ind]]
-        swapInd = getRightChildIndex[ind]
+      if (smallerChild > this.items[this.getRightChildIndex[ind]]) {
+        smallerChild = this.items[this.getRightChildIndex[ind]]
+        swapInd = this.getRightChildIndex[ind]
       }
 
       if (ele < smallerChild) break
 
-      swap(ind, swapInd)
+      this.swap(ind, swapInd)
+
+      ind = swapInd
     }
   }
 }
 
 let myMinHeap = new minHeap
 console.log('myMinHeap: ', myMinHeap);
+myMinHeap.add(10)
+console.log('10 myMinHeap: ', myMinHeap);
+myMinHeap.add(15)
+console.log('15 myMinHeap: ', myMinHeap);
+myMinHeap.add(20)
+console.log('20 myMinHeap: ', myMinHeap);
+myMinHeap.add(17)
+console.log('17 myMinHeap: ', myMinHeap);
+
+// myMinHeap.add(8)
+// console.log('8 myMinHeap: ', myMinHeap);
