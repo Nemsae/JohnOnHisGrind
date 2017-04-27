@@ -33,14 +33,14 @@ class minHeap {
   }
   //  returns index of parent
   getParentIndex(index) {
-    return Math.abs(Math.ceil((index - 2) / 2))
+    return Math.ceil((index - 2) / 2)
   }
 
   //  peek at the min element
   peek() {
     if (this.size === 0) return 'No min element, heap is empty!'
 
-    return item[0]
+    return this.items[0]
   }
 
   //  add an element
@@ -68,8 +68,10 @@ class minHeap {
     let last = this.items[this.size - 1]
 
     this.items[0] = last
+    this.items.pop()
     this.size--
 
+    console.log('REMOVAL this.items: ', this.items);
     this.heapifyDown()
 
     return min
@@ -78,34 +80,39 @@ class minHeap {
   //  swaps elements at given indices
   swap(index1, index2) {
     let tempItem = this.items[index1]
+    console.log('tempItem: ', tempItem); // 15
     this.items[index1] = this.items[index2]
+    console.log('this.items[index1]: ', this.items[index1]);  //  8
     this.items[index2] = tempItem
+    console.log('this.items[index2]: ', this.items[index2]);
   }
 
   //  No need for ind as an argument since we will always heapifyUp from last element added
   heapifyUp() {
     let ind = this.size - 1
-    let parentInd = this.getParentIndex(ind)
-    let parentEle = this.items[parentInd]
 
-    while(this.hasParent(ind) && parentEle > this.items[ind]) {
-      this.swap(parentInd, this.items[ind])
-      ind = parentInd
+    // let parentEle = this.items[this.getParentIndex(ind)]
+
+    while(this.hasParent(ind) && (this.items[this.getParentIndex(ind)] > this.items[ind])) {
+      this.swap(this.getParentIndex(ind), ind)
+      ind = this.getParentIndex(ind)
     }
   }
 
   heapifyDown() {
     let ind = 0
-    let ele = this.items[ind]
     let swapInd
 
-    while(hasLeftChild(ind)) {
-      let smallerChild = this.items[this.getLeftChildIndex[ind]]
-      swapInd = this.getLeftChildIndex[ind]
+    while(this.hasLeftChild(ind)) {
+      let ele = this.items[ind]
+      console.log('ele: ', ele);
 
-      if (smallerChild > this.items[this.getRightChildIndex[ind]]) {
-        smallerChild = this.items[this.getRightChildIndex[ind]]
-        swapInd = this.getRightChildIndex[ind]
+      let smallerChild = this.items[this.getLeftChildIndex(ind)]
+      swapInd = this.getLeftChildIndex(ind)
+      console.log('swapInd: ', swapInd); // 1
+      if (smallerChild > this.items[this.getRightChildIndex(ind)]) {
+        smallerChild = this.items[this.getRightChildIndex(ind)]
+        swapInd = this.getRightChildIndex(ind)
       }
 
       if (ele < smallerChild) break
@@ -127,6 +134,11 @@ myMinHeap.add(20)
 console.log('20 myMinHeap: ', myMinHeap);
 myMinHeap.add(17)
 console.log('17 myMinHeap: ', myMinHeap);
-
-// myMinHeap.add(8)
-// console.log('8 myMinHeap: ', myMinHeap);
+myMinHeap.add(8)
+console.log('8 myMinHeap: ', myMinHeap);
+console.log('peek: ', myMinHeap.peek())
+console.log(myMinHeap.remove())
+console.log('REMOVAL myMinHeap: ', myMinHeap);
+console.log(myMinHeap.remove())
+console.log('REMOVAL myMinHeap: ', myMinHeap);
+console.log('peek: ', myMinHeap.peek())
