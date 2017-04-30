@@ -1,5 +1,6 @@
 //  If board is done or not return 'Finished!', otherwise return 'Try again!'
-
+//  for the row sum, you could just grab the entire row and calculate it everytime i++
+//  for sqSum, R will only be 3 or 6 or 9
 function doneOrNot(board){
   //  Check if all rows sum to 45
   let err = 'Try again!'
