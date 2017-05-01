@@ -1,20 +1,37 @@
 public class Kata {
   public static String HighAndLow(String numbers) {
-    // Code here or
-    // max = numbers[0]
-    // min = numbers[0]
-    System.out.println(numbers);
-    System.out.println(numbers.getClass().getName());
     String[] strArr = numbers.split(" ");
+    int max = Integer.parseInt(strArr[0]);
+    int min = Integer.parseInt(strArr[0]);
+
+    System.out.println("numbers: " + numbers);
+    System.out.println("max: " + max);
+    System.out.println("min: " + min);
+
 //     for (String str: strArr) {
 //       System.out.println(str);
 //     }
-//     System.out.println(Arrays.toString(strArr));
-    for (int i = 0; i < strArr.length; i+=2) {
-//       int num = numbers.charAt(i).parseInt();
-      int num = strArr.charAt(i);
-      System.out.println(num);
+
+    for (int i = 0; i < strArr.length; i++) {
+/*       String num = strArr[i]; */
+      int num = Integer.parseInt(strArr[i]);
+
+      if (num > max) {
+        max = num;
+      }
+      
+      if (num < min) {
+        min = num;
+      }
+
+      System.out.println("num: " + num);
     }
-    return "throw towel";
+
+    String answer = "";
+    answer += max;
+    answer += " ";
+    answer += min;
+
+    return answer;
   }
 }
