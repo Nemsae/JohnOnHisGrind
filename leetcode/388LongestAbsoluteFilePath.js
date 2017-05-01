@@ -29,7 +29,51 @@
  */
 var lengthLongestPath = function(input) {
   let inputArr = input.split('\n');
+  let globalDir = ['dir']
+  let globalDepth = 0;
+  let allFilePaths = {}
   console.log('inputArr: ', inputArr);
+
+  for (let i = 1; i < inputArr.length; i++) {
+    let curr = inputArr[i];
+    let currArr = curr.split('\t')
+    let currDepth = currArr.length - 1;
+    let file = currArr.slice(-1)[0]
+    let fileCheck = file.split('.').length > 1 ? true : false
+
+    console.log('currDepth: ', currDepth, 'curr: ', curr,  'file: ', file);
+
+    if (currDepth > globalDepth) {
+      globalDir.push(file)
+      globalDepth++
+
+    } else if (currDepth === globalDepth) {
+      //  pop off last dir in globalDir, then push current file into globalDir
+      globalDir.splice(-1, 1)
+      globalDir.push(file)
+    } else if (currDepth < globalDepth) {
+      //  take out last dirs
+      globalDir.splice(-2, 2)
+      globalDir.push(file)
+    }
+
+    //  At the end, check if the file has an .ext, if so record it.
+    if (fileCheck) {
+      // allFilePaths.push(globalDir.join('/'))
+      let path = globalDir.join('/')
+      allFilePaths[path] = path.length
+    }
+  }
+
+  console.log('allFilePaths: ', allFilePaths);
+  
+  let keys = Object.keys(allFilePaths)
+  let max = 0
+  keys.forEach(key => {
+    if (allFilePaths[key] > max) max = allFilePaths[key]
+  })
+
+  return max
 };
 
 console.log(lengthLongestPath("dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext"))
