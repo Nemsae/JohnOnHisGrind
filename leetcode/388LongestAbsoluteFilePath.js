@@ -29,10 +29,18 @@
  */
 var lengthLongestPath = function(input) {
   let inputArr = input.split('\n');
-  let globalDir = ['dir']
+  console.log('inputArr: ', inputArr, inputArr.length);
+  if (inputArr.length === 1) {
+    if (input.split('.').length === 1) {
+      return 0
+    } else {
+      console.log('Sanity:');
+      return input.length
+    }
+  }
+  let globalDir = [inputArr[0]]
   let globalDepth = 0;
   let allFilePaths = {}
-  console.log('inputArr: ', inputArr);
 
   for (let i = 1; i < inputArr.length; i++) {
     let curr = inputArr[i];
@@ -44,17 +52,25 @@ var lengthLongestPath = function(input) {
     console.log('currDepth: ', currDepth, 'curr: ', curr,  'file: ', file);
 
     if (currDepth > globalDepth) {
+      // console.log('Sanity:Deeper');
       globalDir.push(file)
       globalDepth++
 
     } else if (currDepth === globalDepth) {
       //  pop off last dir in globalDir, then push current file into globalDir
+      // console.log('Sanity:Same Depth');
       globalDir.splice(-1, 1)
       globalDir.push(file)
     } else if (currDepth < globalDepth) {
       //  take out last dirs
-      globalDir.splice(-2, 2)
+      let diff = globalDepth - currDepth
+      console.log('Sanity:Shallower by: ', diff);
+      console.log('B4 Slice: ', globalDir, globalDepth)
+      globalDir.splice(-(diff + 1), diff + 1)
+      globalDepth -= diff
+      console.log('Sliced: ', globalDir, globalDepth)
       globalDir.push(file)
+      console.log('Pushed: ', globalDir)
     }
 
     //  At the end, check if the file has an .ext, if so record it.
@@ -66,7 +82,7 @@ var lengthLongestPath = function(input) {
   }
 
   console.log('allFilePaths: ', allFilePaths);
-  
+
   let keys = Object.keys(allFilePaths)
   let max = 0
   keys.forEach(key => {
@@ -76,4 +92,7 @@ var lengthLongestPath = function(input) {
   return max
 };
 
-console.log(lengthLongestPath("dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext"))
+// console.log(lengthLongestPath('a')) //  0
+// console.log(lengthLongestPath("dir\n\tsubdir1\n\tsubdir2\n\t\tfile.ext")) //  20
+// console.log(lengthLongestPath("dir\n\tsubdir1\n\t\tfile1.ext\n\t\tsubsubdir1\n\tsubdir2\n\t\tsubsubdir2\n\t\t\tfile2.ext")) //  32
+console.log(lengthLongestPath('a\n\taa\n\t\taaa\n\t\t\tfile1.txt\naaaaaaaaaaaaaaaaaaaaa\n\tsth.png'))  // 29
