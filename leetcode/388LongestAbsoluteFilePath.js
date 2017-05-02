@@ -29,7 +29,8 @@
  */
 var lengthLongestPath = function(input) {
   let inputArr = input.split('\n');
-  console.log('inputArr: ', inputArr, inputArr.length);
+  let max = 0
+
   if (inputArr.length === 1) {
     if (input.split('.').length === 1) {
       return 0
@@ -38,6 +39,7 @@ var lengthLongestPath = function(input) {
       return input.length
     }
   }
+
   let globalDir = [inputArr[0]]
   let globalDepth = 0;
   let allFilePaths = {}
@@ -49,45 +51,45 @@ var lengthLongestPath = function(input) {
     let file = currArr.slice(-1)[0]
     let fileCheck = file.split('.').length > 1 ? true : false
 
-    console.log('currDepth: ', currDepth, 'curr: ', curr,  'file: ', file);
+    // console.log('currDepth: ', currDepth, 'curr: ', curr,  'file: ', file);
 
     if (currDepth > globalDepth) {
-      // console.log('Sanity:Deeper');
       globalDir.push(file)
       globalDepth++
-
     } else if (currDepth === globalDepth) {
-      //  pop off last dir in globalDir, then push current file into globalDir
-      // console.log('Sanity:Same Depth');
       globalDir.splice(-1, 1)
       globalDir.push(file)
     } else if (currDepth < globalDepth) {
-      //  take out last dirs
+      //  Calculate difference in depths and 'go back'
       let diff = globalDepth - currDepth
-      console.log('Sanity:Shallower by: ', diff);
-      console.log('B4 Slice: ', globalDir, globalDepth)
+      // console.log('Sanity:Shallower by: ', diff);
+      // console.log('B4 Slice: ', globalDir, globalDepth)
       globalDir.splice(-(diff + 1), diff + 1)
       globalDepth -= diff
-      console.log('Sliced: ', globalDir, globalDepth)
+      // console.log('Sliced: ', globalDir, globalDepth)
       globalDir.push(file)
-      console.log('Pushed: ', globalDir)
+      // console.log('Pushed: ', globalDir)
     }
 
     //  At the end, check if the file has an .ext, if so record it.
     if (fileCheck) {
-      // allFilePaths.push(globalDir.join('/'))
-      let path = globalDir.join('/')
-      allFilePaths[path] = path.length
+      // let path = globalDir.join('/')
+      // allFilePaths[path] = path.length
+
+      let pathLen = globalDir.join('/').length
+
+      if (pathLen > max) max = pathLen
     }
   }
 
-  console.log('allFilePaths: ', allFilePaths);
+  // console.log('allFilePaths: ', allFilePaths);
 
-  let keys = Object.keys(allFilePaths)
-  let max = 0
-  keys.forEach(key => {
-    if (allFilePaths[key] > max) max = allFilePaths[key]
-  })
+  // //  Now find the max length of all the possible file paths
+  // let keys = Object.keys(allFilePaths)
+  //
+  // keys.forEach(key => {
+  //   if (allFilePaths[key] > max) max = allFilePaths[key]
+  // })
 
   return max
 };
