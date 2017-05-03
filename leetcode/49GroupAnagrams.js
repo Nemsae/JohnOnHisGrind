@@ -16,70 +16,22 @@ var groupAnagrams = function(strs) {
   let ans = []
   let dict = {}
 
-  let group = []
-
   for (let i = 0; i < strs.length; i++) {
-    let cur = strs[i]
-    // console.log('cur: ', cur);
+    let str = strs[i]
 
-    if (cur === '') {
-      dict['empty'] = 1
+    let x = str.split('').sort().join('')
+
+    if (dict[x]) {
+      dict[x].push(str)
     } else {
-      cur.split('').forEach(char => {
-        dict[char] ? dict[char]++ : dict[char] = 1
-      })
+      dict[x] = [str]
     }
-
-    group.push(cur)
-
-    // console.log('group: ', group);
-
-    for (let j = i + 1; j < strs.length; j++) {
-      let next = strs[j]
-      let skip = false
-      let tmp = JSON.parse(JSON.stringify(dict))
-      // console.log('next: ', next, 'dict: ', dict,  'tmp: ', tmp );
-
-      if (next === '') {
-        tmp['empty']--
-        // console.log('dict of empty: ', dict);
-      } else {
-        next.split('').forEach(char => {
-          if (tmp[char]) {
-            tmp[char]--
-          } else {
-            skip = true
-            return;
-          }
-        })
-      }
-
-      if (skip) {
-        // console.log('SKIPPED')
-      } else {
-        let keys = Object.keys(tmp)
-        // console.log('tmp: ', tmp);
-        // console.log('keys: ', keys);
-        let sum = keys.reduce((c, i, a) => {
-          return c + tmp[i]
-        }, 0)
-        // console.log('sum: ', sum);
-
-        if (sum === 0) {
-          strs.splice(j, 1)
-          j--
-
-          group.push(next)
-          // console.log('group: ', group, 'strs: ', strs );
-        }
-      }
-    }
-
-    ans.push(group)
-    // console.log('ans: ', ans);
-    group = []
-    dict = {}
   }
+
+  let keys = Object.keys(dict)
+  keys.forEach(key => {
+    ans.push(dict[key])
+  })
 
   return ans
 };
