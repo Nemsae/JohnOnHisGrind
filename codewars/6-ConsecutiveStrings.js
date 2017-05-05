@@ -7,33 +7,34 @@
 // n being the length of the string array, if n = 0 or k > n or k <= 0 return "".
 
 function longestConsec(strarr, k) {
-  let ans = ''
-
-  let arrLen = strarr.length
-  if (k > arrLen) return ans
-  if (strarr.length === 0) return ans
-
-  while (k) {
+    // your code
     let max = 0
-    let str = ''
-    let ind = 0
-    strarr.forEach((word, i) => {
-      let len = word.length
-      if (len > max) {
-        max = len
-        str = word
-        ind = i
+    let maxStr = ''
+//     let limit = k
+
+    for (let i = 0; i < strarr.length; i++) {
+      let currStr = strarr[i]
+
+      let currLen = currStr.length
+      let currTotal = currLen
+
+      let totalStr = currStr
+
+      for (let j = 0; j < k - 1; j++) {
+        let nextLen = strarr[j].length
+        currTotal += nextLen
+
+        totalStr += strarr[j]
       }
-    })
 
-    strarr.splice(ind, 1)
-    console.log(k, 'str: ', str);
+      if (currTotal > max) {
+        max = currTotal
+        maxStr = totalStr
+      }
+    }
+    console.log('maxStr: ', maxStr);
 
-    ans += str
-    k--
-  }
-
-  return ans
+    return max;
 }
 
 console.log(longestConsec(["zone", "abigail", "theta", "form", "libe", "zas"], 2))    //  abigailtheta"
