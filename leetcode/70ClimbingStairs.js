@@ -15,7 +15,6 @@ var climbStairs = function(n) {
 
   function climb (x, n) {
     if (memo[x]) return memo[x]
-
     if (x > n) return 0
     if (x === n) {
       return 1
