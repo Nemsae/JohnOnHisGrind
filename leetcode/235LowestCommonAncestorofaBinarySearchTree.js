@@ -28,33 +28,41 @@
 var lowestCommonAncestor = function(root, p, q) {
     console.log('root: ', root)
 
-    if (root === null) return false
-    if (root === p || root === q) {
-      console.log(root.val, 'Root is P || Q')
-      let left = lowestCommonAncestor(root.left, p, q)
-      // console.log('left? ', left)
-      let right = lowestCommonAncestor(root.right, p, q)
-      // console.log('right? ', right)
-      //
-      if (left || right) {
-        console.log(root.val, 'left or right')
-        return root
-      } else {
-        console.log(root.val, 'left and right is null/false')
-        return true
-      }
-      // return (root.left && lowestCommonAncestor(root.left, p, q)) || (root.right && lowestCommonAncestor(root.right, p, q)) ? root : true
-    } else {
-      let left = lowestCommonAncestor(root.left, p, q)
-      console.log(root.val, 'ELSE left: ', left)
-      let right = lowestCommonAncestor(root.right, p, q)
-      console.log(root.val, 'ELSE right: ', right)
-      if (left && right) {
-        console.log(root.val, 'ELSE right && left is TRUE')
-        return root
-      } else if (left === true || right === true) {
-        console.log(root.val, 'ELSE right || left is TRUE')
-        return true
-      }
+    while ((root - p) * (root - q) > 0) {
+      root = p < root ?  root.left : root.right
     }
+    return root
 };
+// var lowestCommonAncestor = function(root, p, q) {
+//     console.log('root: ', root)
+//
+//     if (root === null) return false
+//     if (root === p || root === q) {
+//       console.log(root.val, 'Root is P || Q')
+//       let left = lowestCommonAncestor(root.left, p, q)
+//       // console.log('left? ', left)
+//       let right = lowestCommonAncestor(root.right, p, q)
+//       // console.log('right? ', right)
+//       //
+//       if (left || right) {
+//         console.log(root.val, 'left or right')
+//         return root
+//       } else {
+//         console.log(root.val, 'left and right is null/false')
+//         return true
+//       }
+//       // return (root.left && lowestCommonAncestor(root.left, p, q)) || (root.right && lowestCommonAncestor(root.right, p, q)) ? root : true
+//     } else {
+//       let left = lowestCommonAncestor(root.left, p, q)
+//       console.log(root.val, 'ELSE left: ', left)
+//       let right = lowestCommonAncestor(root.right, p, q)
+//       console.log(root.val, 'ELSE right: ', right)
+//       if (left && right) {
+//         console.log(root.val, 'ELSE right && left is TRUE')
+//         return root
+//       } else if (left === true || right === true) {
+//         console.log(root.val, 'ELSE right || left is TRUE')
+//         return true
+//       }
+//     }
+// };
