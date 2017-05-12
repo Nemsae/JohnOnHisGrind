@@ -14,6 +14,16 @@
   * @return {void} Do not return anything, modify node in-place instead.
   */
 
+//  SIMPLE SOLUTION
+var deleteNode = function(node) {
+    node.val = node.next.val
+    node.next = node.next.next
+};
+//  a -> b -> c -> d -> e   //  given 'c'
+//            d -> d -> e   //  copy over value of the next node 'd'
+//            d -> e        //  remove d by pointing the new 'd' to 'e'
+
+//  MY RECURSIVE SOLUTION
  var deleteNode = function(node) {
      deleteN(node)
 
