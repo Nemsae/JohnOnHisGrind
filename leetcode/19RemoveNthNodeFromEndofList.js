@@ -29,23 +29,35 @@ Try to do this in one pass.
 
          let x = recurse(node.next, node, n)
          let count = typeof x === 'number' ? x + 1 : x
-         console.log('n: ', n, 'count: ', count)
+
          if (count === n && node === head) {
-             console.log(1, 'node: ', node, 'prev: ', prev)
-             // if (prev === null) {
-             //     console.log('sanity')
-             //     return null
-             // }
              return node.next
-
          } else if (count === n) {
-             console.log(2, 'node: ', node, 'prev: ', prev)
              prev.next = node.next
-             console.log(2, 'node: ', node, 'prev: ', prev)
-
              return head
-         } else {
-             return count
          }
+
+         return count
      }
+ };
+
+//  ITERATIVE
+//  TWO RUNNERS, one runner will go n+1 spaces. Once he reaches that destination
+//  we move the two runners forward. Once Leader hits null, we delete node from
+//  the slower runner.
+ var removeNthFromEnd = function(head, n) {
+     let leader = deleter = head
+
+     for (let i = 0; i < n + 1; i++) {
+         leader && (leader = leader.next)
+     }
+
+     while (leader !== null) {
+         leader = leader.next
+         deleter = deleter.next
+     }
+
+     deleter.next = deleter.next.next
+
+     return head
  };
