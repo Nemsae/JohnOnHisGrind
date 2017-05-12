@@ -25,8 +25,8 @@ Try to do this in one pass.
      return recurse(head, null, n)
 
      function recurse(node, prev, n) {
-         console.log(0, 'node: ', node, 'prev: ', prev)
          if (node === null) return 0
+
          let x = recurse(node.next, node, n)
          let count = typeof x === 'number' ? x + 1 : x
          console.log('n: ', n, 'count: ', count)
