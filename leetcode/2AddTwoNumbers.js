@@ -1,4 +1,44 @@
+//  Optimized solution of the two, May 13th, 2017
+var addTwoNumbers = function(l1, l2) {
+    let carry = 0,
+        ansHead = new ListNode(),
+        curr = ansHead
+        prev = curr
 
+    while (l1 !== null || l2 !== null) {
+        let sum = 0
+
+        l1 && (sum += l1.val)
+        l2 && (sum += l2.val)
+
+        if (carry) sum++
+
+        if (sum > 9) {
+            carry = 1
+            sum = sum - 10
+        } else {
+            carry = 0
+        }
+
+        curr.val = sum
+
+        if (l1 && (l1.next !== null) || l2 && (l2.next !== null)) {
+            curr.next = new ListNode()
+        }
+
+        l1 && (l1 = l1.next)
+        l2 && (l2 = l2.next)
+
+        prev = curr
+        curr = curr.next
+    }
+
+    if (carry) {
+        prev.next = new ListNode(1)
+    }
+
+    return ansHead
+};
 
 //  May 13, 2017
 var addTwoNumbers = function(one, two) {
