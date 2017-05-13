@@ -12,8 +12,28 @@
  * @param {ListNode} head
  * @return {ListNode}
  */
+//  ITERATIVE
+//  ITERATIVE
+var reverseList = function(head) {
+    if (head === null) return null
+    if (head.next === null) return head
 
+    let curr = head,
+        prev = null,
+        temp
 
+    while (curr !== null) {
+        temp = curr.next
+        curr.next = prev
+        prev = curr
+        curr = temp
+    }
+
+    return prev
+};
+
+//  RECURSIVE
+//  RECURSIVE
 var reverseList = function(head) {
     if (head) {
         return reverse(head, null)

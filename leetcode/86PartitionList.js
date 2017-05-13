@@ -20,9 +20,6 @@
  * @return {ListNode}
  */
 var partition = function(head, x) {
-    // if (head === null) return null
-    // if (x === 0 || 1) return head
-
     let lowerArr = []
     let higherArr = []
     let curr = head
@@ -40,25 +37,17 @@ var partition = function(head, x) {
     let finalArr = lowerArr.concat(higherArr),
         newHead = finalArr[0] || null,
         last = finalArr.length - 1
-    //  console.log('finalArr: ', finalArr)
-    //  console.log('newHead: ', newHead)
-    //  console.log('last: ', last)
 
     for (let i = 0; i < last + 1; i++) {
         let node = finalArr[i]
         let nextNode = finalArr[i+ 1]
-        // console.log(0, 'node: ', node, 'nextNode: ', nextNode)
         if (i === last) {
             node.next = null
-            // console.log(1, 'last element: ', node)
         } else {
-            //  console.log(1, 'node: ', node)
             node.next = nextNode
-            // console.log(1, 'node: ', node)
         }
     }
-    
-    // console.log('newHead')
+
 
     return newHead
 };
