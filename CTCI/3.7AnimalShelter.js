@@ -8,15 +8,12 @@ class Animal {
 
 class AnimalShelter {
   constructor() {
-    // this.queue = null
     this.queue = null
   }
 
   enqueue(name, type) {
-    //  new animal comes in
     if (this.queue === null) {
       this.queue = new Animal(name, type)
-      // this.queue = this.queue = new Animal(name, type)
       return this.queue
     }
 
@@ -30,7 +27,6 @@ class AnimalShelter {
   }
 
   dequeueAny() {
-    //  either cat or dog
     if (this.queue === null) return 'No animals!'
 
     let temp = this.queue.next
