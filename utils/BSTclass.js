@@ -29,14 +29,14 @@ class binarySearchTree {
       if (val <= node.data) {
         if (node.left === null) {
           node.left = new Node(val)
-          console.log('node: ', node);
+          // console.log('node: ', node);
         } else {
           recurseBST(node.left, val)
         }
       } else {
         if (node.right === null) {
           node.right = new Node(val)
-          console.log('node: ', node);
+          // console.log('node: ', node);
         } else {
           recurseBST(node.right, val)
         }
@@ -45,18 +45,22 @@ class binarySearchTree {
   }
 }
 
-let myBST = new binarySearchTree
-let myBST2 = new binarySearchTree(7)
+module.exports = binarySearchTree
 
-console.log('myBST: ', myBST);
-console.log('myBST2: ', myBST2);
+/* TESTS */
 
-console.log(myBST.add(50))
-console.log(myBST.add(17))
-console.log(myBST.add(30))
-console.log(myBST.add(52))
-console.log(myBST.add(51))
-console.log(myBST.add(70))
-console.log(myBST.add(15))
-console.log(myBST.add(63))
-console.log(myBST.add(90))
+// let myBST = new binarySearchTree
+// let myBST2 = new binarySearchTree(7)
+//
+// console.log('myBST: ', myBST);
+// console.log('myBST2: ', myBST2);
+//
+// console.log(myBST.add(50))
+// console.log(myBST.add(17))
+// console.log(myBST.add(30))
+// console.log(myBST.add(52))
+// console.log(myBST.add(51))
+// console.log(myBST.add(70))
+// console.log(myBST.add(15))
+// console.log(myBST.add(63))
+// console.log(myBST.add(90))
