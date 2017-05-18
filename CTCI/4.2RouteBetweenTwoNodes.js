@@ -3,19 +3,14 @@ const Graph = require('../utils/Graph')
 function findRoute(graph, start, end) {
   if (start === end) return true
   let queue = [graph[start]]
-  // graph[start].visited = true
 
   while (queue.length) {
     let currNode = queue[0]
-    console.log('currNode: ', currNode);
     if (currNode.visited) {
-      console.log('Visited Node')
       queue.shift()
     } else {
       for (let child in currNode) {
-        console.log('child: ', child);
         if (child === end) {
-          console.log('Found Child!');
           return true
         } else {
           queue.push(graph[child])
@@ -71,7 +66,10 @@ graph.addEdge('C', 'D')
 graph.addEdge('D', 'H')
 
 console.log('graph: ', graph);
-// console.log("'A', 'H': true ", findRoute(graph.nodes, 'A', 'H')) //  true
-// console.log("'G', 'F': true ", findRoute(graph.nodes, 'G', 'F')) //  true
-// console.log("'C', 'G': true ", findRoute(graph.nodes, 'C', 'G')) //  true
-// console.log("'B', 'H': false ", findRoute(graph.nodes, 'B', 'H')) //  false
+console.log("'A', 'H': true ", findRoute(graph.nodes, 'A', 'H')) //  true
+graph.removeFlags()
+console.log("'G', 'F': true ", findRoute(graph.nodes, 'G', 'F')) //  true
+graph.removeFlags()
+console.log("'C', 'G': true ", findRoute(graph.nodes, 'C', 'G')) //  true
+graph.removeFlags()
+console.log("'B', 'H': false ", findRoute(graph.nodes, 'B', 'H')) //  false

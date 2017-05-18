@@ -70,6 +70,14 @@ Graph.prototype.removeNode = function(node) {
   }
 }
 
+Graph.prototype.removeFlags = function() {
+  for (let currNode in this.nodes) {
+    if (this.nodes[currNode].visited) {
+      delete this.nodes[currNode].visited
+    }
+  }
+}
+
 module.exports = Graph
 
 /* TESTS */
