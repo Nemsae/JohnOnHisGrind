@@ -69,3 +69,27 @@ Graph.prototype.removeNode = function(node) {
     }
   }
 }
+
+var graph = new Graph()
+graph.addNode('A')
+graph.addNode('B')
+graph.addNode('C')
+graph.addNode('D')
+graph.addNode('E')
+
+graph.addEdge('A', 'B')
+graph.addEdge('A', 'C')
+graph.addEdge('B', 'E')
+graph.addEdge('C', 'B')
+graph.addEdge('C', 'D')
+console.log('graph: ', graph)
+console.log('findEdges("C"): ', graph.findEdges("C"))
+console.log("hasEdge('C', 'B'): ", graph.hasEdge('C', 'B'))
+graph.removeEdge('C', 'B')
+console.log('graph: ', graph)
+console.log("hasEdge('C', 'B'): ", graph.hasEdge('C', 'B'))
+console.log("hasNode('C'): ", graph.hasNode('C'))
+graph.removeNode('C')
+console.log('graph: ', graph)
+console.log("hasNode('C'): ", graph.hasNode('C'))
+// graph.addEdge('D', 'E')
