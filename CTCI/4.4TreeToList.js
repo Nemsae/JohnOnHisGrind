@@ -10,7 +10,6 @@ class Node {
 function TreeToList(tree) {
   let depth = 0,
       dict = {}
-  // console.log('tree: ', tree);
   recordDepth(tree.root, depth)
   function recordDepth(node, depth) {
     if (node === null) return
@@ -25,7 +24,6 @@ function TreeToList(tree) {
     recordDepth(node.left, depth)
     recordDepth(node.right, depth)
   }
-  console.log('dict: ', dict);
   let depths = Object.keys(dict)
   let ans = []
   for (let i = 0; i < depths.length; i++) {
