@@ -13,17 +13,23 @@ class Chapter {
     let chapterWords = this.text.split(' ')
     for (let i = 0; i < chapterWords.length; i++) {
       let chapterBlock = chapterWords[i]
-      let wordCheck = isWord(chapterBlock)
+      let wordCheck = this.isWord(chapterBlock)
       console.log('wordCheck: ', wordCheck);
-      if (wordCheck[isWord]) {
+      if (wordCheck.isWord && wordCheck.isPunctuation) {
+        //  the "end."
         this.numberOfWords++
-      } else {
-        // } else if (wordCheck[isPunctuation]){
-        // console.log('Punctuation: ', chapterBlock);
+        this.numberOfPunctuations++
+        console.log('Block is a word and punctuation: ', chapterBlock)
+      } else if (wordCheck.isWord) {
+        this.numberOfWords++
+        console.log(('Block is a word', chapterBlock))
+      } else if (wordCheck.isPunctuation){
+        this.numberOfPunctuations++
+        console.log(('Block is a word', chapterBlock))
       }
     }
 
-    console.log(`Number of words are ${this.numberOfWords}. Amount of punction(s): ${this.numberOfPunctuations}.`, chapter)
+    console.log(`Number of words are ${this.numberOfWords}. Amount of punction(s): ${this.numberOfPunctuations}.`, this.text)
   }
 
   isWord(block) {
