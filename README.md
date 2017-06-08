@@ -1,3 +1,6 @@
+# Orange Flower
+Making my own text editor.
+
 # The Big 4 Grind
 
 Shoot for the stars and I'm bound to hit something.
