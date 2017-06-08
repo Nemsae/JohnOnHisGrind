@@ -85,4 +85,10 @@ module.exports = class Chapter {
 
     return returnObj
   }
+
+  newEntry(newText) {
+    let timeStamp = Date.now()
+
+    this.text = `${this.text}\n\n${timeStamp}\n\t${newText}`
+  }
 }
