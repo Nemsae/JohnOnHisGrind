@@ -1,6 +1,6 @@
 class Node {
-  constructor(data, left = null, right = null) {
-    this.data = data
+  constructor(val, left = null, right = null) {
+    this.val = val
     this.left = left
     this.right = right
   }
@@ -26,7 +26,7 @@ class binarySearchTree {
     recurseBST(current, val)
 
     function recurseBST(node, val) {
-      if (val <= node.data) {
+      if (val <= node.val) {
         if (node.left === null) {
           node.left = new Node(val)
           // console.log('node: ', node);
