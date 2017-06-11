@@ -52,3 +52,24 @@ var inorderTraversal = function(root) {
 
     return inOrderArr
 };
+
+//  MORE EFFICIENT
+var inorderTraversal = function(root) {
+    let inOrderArr = []
+    let stack = []
+    let stackLen = 0
+    while (root || stackLen !== 0) {
+       while (root) {
+           stack.push(root)
+           stackLen++
+           root = root.left
+       }
+
+       root = stack.pop()
+       stackLen--
+       inOrderArr.push(root.val)
+       root = root.right
+    }
+
+    return inOrderArr
+};
