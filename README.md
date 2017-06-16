@@ -1,11 +1,11 @@
 # Orange Flower
 Making my own text editor.
 
-# The Big 4 Grind
+# Algos
+1. CTCI
+2. Computer Science/Data Structures
+3. Codewars
+4. Leetcode
 
-Shoot for the stars and I'm bound to hit something.
-
-1. Complete CTCI
-2. Implement all data structures
-3. Implement all sorting algos
-4. Complete all essential Leetcode Questions
+# Node
+Node.js excercises
